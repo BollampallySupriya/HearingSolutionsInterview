@@ -1,0 +1,29 @@
+{% block content %}
+
+    <h2>Cart</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>sku</th>
+            <th>quantity</th>
+            <th>total price</th>
+        </tr>
+        {% for item, value in cart.items %}
+            <tr>
+                <td>{{item}}</td>
+                <td>{{value.sku}}</td>
+                <td>{{value.quantity}}</td>
+                <td>{{value.total_price}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h3>Final Price: {{final_price}}</h3>
+
+    <form action="/coupons/validate/" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" />
+    </form>
+    {{error}}
+
+{% endblock %}
